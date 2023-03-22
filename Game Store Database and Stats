@@ -1,0 +1,34 @@
+--Create a store database
+CREATE TABLE store (id INTEGER PRIMARY KEY, game TEXT, price NUMERIC, release_year INTEGER, console TEXT);
+
+INSERT INTO store VALUES
+(1, "Breath of the Wild", 59.99, 2017, "Nintendo Switch"),
+(2, "The Wither 3: Wild Hunt", 19.99, 2015, "Xbox One"),
+(3, "Mario 3", 29.99, 1997, "NES"),
+(4, "Street Fighter 2", 25.99, 1998, "NES"),
+(5, "God of War", 49.99, 2018, "PS4"),
+(6, "Pokemon Diamond", 39.99, 2011, "Nintendo DS"),
+(7, "Horizon Zero Dawn", 39.99, 2018, "PS4"),
+(8, "Uncharted 4", 25.99, 2017, "PS4"),
+(9, "Mario Kart 8", 49.99, 2017, "Nintendo Switch"),
+(10, "Metroid Dread", 49.99, 2021, "Nintendo Switch"), 
+(11, "Halo", 9.99, 2003, "Xbox One"),
+(12, "Persona 5 Royal", 39.99, 2019, "PS4"),
+(13, "Fallout 4", 19.99, 2016, "Xbox One"),
+(14, "Sonic Adventures 2", 39.99, 1996, "SEGA Genesis"),
+(15, "Mario 64", 199.99, 1999, "N64");
+
+--Display the database ordered by price
+SELECT * FROM store 
+ORDER BY price ASC;
+
+--What's the aggregate value of the games in our store that were released before 2001 by console?
+SELECT console, SUM(price) "total_price_of_games"
+FROM store 
+WHERE release_year <=2000
+GROUP BY console;
+
+--What's the average price of Nintendo Switch games in the store?
+SELECT console, AVG(price) "avg_game_price"
+FROM store
+WHERE console ="Nintendo Switch";
